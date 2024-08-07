@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <link rel="stylesheet" href="styles.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopping list example</title>
+    <style>
+      li {
+        margin-bottom: 10px;
+      }
+
+      li button {
+        font-size: 12px;
+        margin-left: 20px;
+        color: #666;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>My Todo list:</h1>
+
+    <div id="lsmaker">
+      <label for="item">Enter a new item</label>
+      <input type="text" name="item" id="item" />
+    </div>
+
+    <ul id="shoppingList"></ul>
+
+    <script>
+      const list = document.querySelector("#shoppingList");
+      const inp = document.querySelector("#item");
+      inp.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") {
+          let listElement = inp.value;
+          inp.value = "";
+          const element = document.createElement("li");
+          const span = document.createElement("span");
+          const deleteButton = document.createElement("button");
+          const node = document.createTextNode(listElement);
+          const node2 = document.createTextNode("Delete");
+          span.appendChild(node);
+          deleteButton.appendChild(node2);
+          element.appendChild(span);
+          element.appendChild(deleteButton);
+          list.appendChild(element);
+          deleteButton.addEventListener("click", () => {
+            element.remove();
+            inp.focus();
+          });
+          inp.focus();
+        }
+      });
+    </script>
+  </body>
+</html>
